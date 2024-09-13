@@ -2,12 +2,12 @@
   "name": "notepad-math-extension",
   "displayName": "Notepad Math Extension",
   "description": "Simplicity of a text editor with the functionality of a calculator. Just type your math expression followed by “=” to get instant results.",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "publisher": "DavidRufino",
   "icon": "images/notepadMath.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/DavidRufino/NotepadMath-VSExtension.git"
+    "url": "https://github.com/DavidRufino/NotepadMath-VSExtension"
   },
   "bugs": {
     "url": "https://github.com/DavidRufino/NotepadMath-VSExtension"
@@ -18,17 +18,31 @@
   },
   "author": "David Rufino",
   "license": "MIT",
+  "keywords": [
+    "plaintext",
+    "calculator",
+    "notepad",
+    "math",
+    "txt",
+    "math expression",
+    "instant result",
+    "equations",
+    "percentages",
+    "text editor",
+    "calculate"
+  ],
   "categories": [
     "Other"
   ],
   "activationEvents": [
-    "onLanguage:plaintext"
+    "onStartupFinished"
   ],
-  "main": "./src/extension.js",
+  "main": "./dist/extension",
   "contributes": {
     "commands": []
   },
   "scripts": {
+    "build": "node build.js --production",
     "lint": "eslint .",
     "pretest": "npm run lint",
     "test": "vscode-test"
@@ -39,6 +53,7 @@
     "@types/vscode": "^1.93.0",
     "@vscode/test-cli": "^0.0.10",
     "@vscode/test-electron": "^2.4.1",
+    "esbuild": "^0.23.1",
     "eslint": "^9.9.1"
   },
   "dependencies": {

@@ -1,5 +1,5 @@
 // The module 'vscode' contains the VS Code extensibility API
-const vscode = require('vscode');
+const { workspace, window } = require('vscode');
 const processLine = require('./helpers/mathHelper.js');
 
 // Property to prevent recursive calls
@@ -8,16 +8,14 @@ let isProcessing = false;
 // Global variable to store the disposable
 let editorContentChangeListener;
 
-/**
- * @param {vscode.ExtensionContext} context
- */
+// This method is called when your extension is activate
 function activate(context) {
 	// Register the content change listener
-	editorContentChangeListener = vscode.workspace.onDidChangeTextDocument((event) => {
+	editorContentChangeListener = workspace.onDidChangeTextDocument((event) => {
 		if (isPlainTextDocument(event.document)) {
 			// Handle text document changes only for plaintext documents
 			// Call the debounced function with the document
-            debouncedProcess(event);
+			debouncedProcess(event);
 		}
 	});
 
@@ -43,12 +41,8 @@ function processLineChanged(event) {
 
 	try {
 		// Get the active text editor
-		const editor = vscode.window.activeTextEditor;
-
-		if (!editor) {
-			vscode.window.showInformationMessage('No active editor found.');
-			return;
-		}
+		const editor = window.activeTextEditor;
+		if (!editor) return;
 
 		// Retrieve the document from the editor
 		const document = editor.document;
@@ -73,8 +67,8 @@ function processLineChanged(event) {
 
 // Debounced function to process expressions on content change
 const debouncedProcess = debounce((event) => {
-    // Processing logic for plaintext documents
-    processLineChanged(event);
+	// Processing logic for plaintext documents
+	processLineChanged(event);
 }, 120);
 
 // Debounce function

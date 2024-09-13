@@ -1,4 +1,4 @@
-const vscode = require('vscode');
+const { WorkspaceEdit, Range, workspace } = require('vscode');
 const math = require('../lib/mathjs-bundle.js'); // Adjust the path as needed
 
 /**
@@ -16,7 +16,7 @@ async function processLine(document, lineNumber) {
         const patternLogical = "(?:(\\(|\\))(?:\\s?))+";
         const patternMathFunctions = "((?:(?:Math\\.)?(?:log|sqrt|pow|exp|abs|acos|acosh|asin|asinh|atan|atan2|atanh|bigmul|bitdecrement|bitincrement|cbrt|ceiling|clamp|copysign|cos|cosh|civrem|exp|floor|fusedmultiplyadd|ieeeremainder|ilogb|log|log10|log2|max|maxmagnitude|min|minmagnitude|pow|reciprocalestimate|reciprocalsqrtestimate|round|scaleb|sign|sin|sincos|sinh|sqrt|tan|tanh|truncate)|[0-9+\\-*/^:().%]|(?:,\\s?)){3,})";
         const patternEqualityCheck = "(=)(?![NULL]|[a-zA-Z$]|([\[])\s*(?:\d+(?:\s*,\s*\d+)*\s*)?([\]])?|[True]|[False]|-)(?!\\d+)";
-        
+
         // Combine all parts
         const fullPattern = `(?<!\\w)(${patternLogical}|${patternMathFunctions})${patternEqualityCheck}`;
         const regex = new RegExp(fullPattern, "gi");
@@ -64,12 +64,12 @@ async function processLine(document, lineNumber) {
         // Update the line with the new content
         if (newLineContent !== lineContent) {
             // Create a workspace edit
-            const edit = new vscode.WorkspaceEdit();
-            const range = new vscode.Range(line.range.start, line.range.end);
+            const edit = new WorkspaceEdit();
+            const range = new Range(line.range.start, line.range.end);
             edit.replace(document.uri, range, newLineContent);
 
             // Apply the workspace edit
-            await vscode.workspace.applyEdit(edit);
+            await workspace.applyEdit(edit);
         }
     } catch (error) {
         console.error("[Notepad Math] processLine error:", error.message)

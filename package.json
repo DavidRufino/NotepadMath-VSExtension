@@ -2,7 +2,7 @@
   "name": "notepad-math-extension",
   "displayName": "Notepad Math Extension",
   "description": "Simplicity of a text editor with the functionality of a calculator. Just type your math expression followed by “=” to get instant results.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "DavidRufino",
   "icon": "images/notepadMath.png",
   "repository": {

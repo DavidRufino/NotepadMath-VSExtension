@@ -72,7 +72,7 @@ async function processLine(document, lineNumber) {
             await vscode.workspace.applyEdit(edit);
         }
     } catch (error) {
-        console.log("[mathHelper] processLine error:", error.message)
+        console.error("[Notepad Math] processLine error:", error.message)
     }
 }
 

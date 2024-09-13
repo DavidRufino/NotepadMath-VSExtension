@@ -1,0 +1,5 @@
+/*! @license mathjs 13.1.1
+ * Copyright (c) josdejong and other contributors
+ * Released under Apache License 2.0
+ * https://github.com/josdejong/mathjs/blob/develop/LICENSE
+ *-----------------------------------------------------------------------------*/

@@ -4,6 +4,14 @@
   "description": "Simplicity of a text editor with the functionality of a calculator. Just type your math expression followed by “=” to get instant results.",
   "version": "1.0.0",
   "icon": "images/notepadMath.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DavidRufino/NotepadMath-VSExtension.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DavidRufino/NotepadMath-VSExtension"
+  },
+  "homepage": "https://www.idruf.com/products/notepadmath",
   "engines": {
     "vscode": "^1.93.0"
   },

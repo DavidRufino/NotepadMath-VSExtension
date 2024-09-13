@@ -8,12 +8,6 @@ let isProcessing = false;
 // Global variable to store the disposable
 let editorContentChangeListener;
 
-// Debounced function to process expressions on content change
-const debouncedProcess = debounce((event) => {
-    // Processing logic for plaintext documents
-    processLineChanged(event);
-}, 120);
-
 /**
  * @param {vscode.ExtensionContext} context
  */
@@ -77,9 +71,11 @@ function processLineChanged(event) {
 	}
 }
 
-function isPlainTextDocument(document) {
-	return document.languageId === 'plaintext';
-}
+// Debounced function to process expressions on content change
+const debouncedProcess = debounce((event) => {
+    // Processing logic for plaintext documents
+    processLineChanged(event);
+}, 120);
 
 // Debounce function
 function debounce(func, wait) {
@@ -89,6 +85,10 @@ function debounce(func, wait) {
 		timeout = setTimeout(() => func.apply(this, args), wait);
 	};
 };
+
+function isPlainTextDocument(document) {
+	return document.languageId === 'plaintext';
+}
 
 module.exports = {
 	activate,

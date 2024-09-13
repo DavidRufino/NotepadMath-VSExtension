@@ -1,0 +1,38 @@
+{
+  "name": "notepad-math-extension",
+  "displayName": "Notepad Math Extension",
+  "description": "Simplicity of a text editor with the functionality of a calculator. Just type your math expression followed by “=” to get instant results.",
+  "version": "1.0.0",
+  "icon": "images/notepadMath.png",
+  "engines": {
+    "vscode": "^1.93.0"
+  },
+  "author": "David Rufino",
+  "license": "MIT",
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:plaintext"
+  ],
+  "main": "./src/extension.js",
+  "contributes": {
+    "commands": []
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.7",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.93.0",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1",
+    "eslint": "^9.9.1"
+  },
+  "dependencies": {
+    "mathjs": "^13.1.1"
+  }
+}

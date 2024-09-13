@@ -9,7 +9,7 @@ Notepad Math VS Code Extension combines the simplicity of a text editor with the
     
 ### How to Install
 **Via the Marketplace**
-(Not yet published on the Marketplace)
+https://marketplace.visualstudio.com/items?itemName=DavidRufino.notepad-math-extension
 
 ### Usage
 - Open a plaintext (.txt) file in VS Code (Ctrl+N and set language mode to Plain Text).

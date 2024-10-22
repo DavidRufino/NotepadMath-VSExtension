@@ -13,13 +13,15 @@ async function processLine(document, lineNumber) {
         const lineContent = line.text; // Get the current content of the line
 
         // Define patterns for different types of expressions
-        const patternLogical = "(?:(\\(|\\))(?:\\s?))+";
-        const patternMathFunctions = "((?:(?:Math\\.)?(?:log|sqrt|pow|exp|abs|acos|acosh|asin|asinh|atan|atan2|atanh|bigmul|bitdecrement|bitincrement|cbrt|ceiling|clamp|copysign|cos|cosh|civrem|exp|floor|fusedmultiplyadd|ieeeremainder|ilogb|log|log10|log2|max|maxmagnitude|min|minmagnitude|pow|reciprocalestimate|reciprocalsqrtestimate|round|scaleb|sign|sin|sincos|sinh|sqrt|tan|tanh|truncate)|[0-9+\\-*/^:().%]|(?:,\\s?)){3,})";
-        const patternEqualityCheck = "(=)(?![NULL]|[a-zA-Z$]|([\[])\s*(?:\d+(?:\s*,\s*\d+)*\s*)?([\]])?|[True]|[False]|-)(?!\\d+)";
-
-        // Combine all parts
-        const fullPattern = `(?<!\\w)(${patternLogical}|${patternMathFunctions})${patternEqualityCheck}`;
-        const regex = new RegExp(fullPattern, "gi");
+        const patternLogical = "(?:(true|false|AND|NOT|OR|\(\d+.*?\))(?:,\s?))+";
+        const patternMathFunctions =
+          "((?:(?:Math\\.)?(?:log|sqrt|pow|exp|abs|acos|acosh|asin|asinh|atan|atan2|atanh|bigmul|bitdecrement|bitincrement|cbrt|ceiling|clamp|copysign|cos|cosh|civrem|exp|floor|fusedmultiplyadd|ieeeremainder|ilogb|log|log10|log2|max|maxmagnitude|min|minmagnitude|pow|reciprocalestimate|reciprocalsqrtestimate|round|scaleb|sign|sin|sincos|sinh|sqrt|tan|tanh|truncate)|[0-9+\\-*/^:().%]|(?:,\\s?)){3,})";
+        const patternEqualityCheck =
+          "(=)(?![NULL]|[a-zA-Z$]|([[])s*(?:d+(?:s*,s*d+)*s*)?([]])?|[True]|[False]|-)(?!\\d+)";
+    
+    // Combine all parts
+    const fullPattern = `(?<!\\w)(${patternLogical}|${patternMathFunctions})${patternEqualityCheck}`;
+    const regex = new RegExp(fullPattern, "gi");
 
         // Process the line for math expressions
         const newLineContent = lineContent.replace(regex, (match, expression) => {
